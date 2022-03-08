@@ -4,6 +4,7 @@ import Nat32 "mo:base/Nat32";
 import Char "mo:base/Char";
 import Text "mo:base/Text";
 import Array "mo:base/Array";
+import Iter "mo:base/Iter";
 
 actor {
 
@@ -137,4 +138,28 @@ actor {
     // Challenge 9 (not here yet)
 
     // Challenge 10 (not here yet)
+    private func _swap(array : [Nat], i : Nat, j : Nat) : [Nat] {
+        let array_mutable = Array.thaw<Nat>(array);
+        let tmp = array[i];
+
+        array_mutable[i] := array[j];
+        array_mutable[j] := tmp;
+
+        return(Array.freeze<Nat>(array_mutable));
+    };
+
+    public func bubble_sort(array : [Nat]) : async [Nat] {
+        var sorted = array;
+        let size = array.size();
+
+        for (i in Iter.range(1, size - 1)) {
+            for (j in Iter.range(0, size - 2)) {
+                if (sorted[j] > sorted[j + 1]) {
+                    sorted := _swap(sorted, j, j + 1);
+                };
+            };
+        };  
+
+        return(sorted);
+    };
 }
