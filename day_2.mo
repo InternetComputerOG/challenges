@@ -135,13 +135,13 @@ actor {
         return r;
     };
 
-    // Challenge 9 (not here yet)
+    // Challenge 9
     public func size_in_bytes(t : Text) : async Nat {
         let b : Blob = Text.encodeUtf8(t);
         return b.size();
     };
 
-    // Challenge 10 (not here yet)
+    // Challenge 10
     private func _swap(array : [Nat], i : Nat, j : Nat) : [Nat] {
         let array_mutable = Array.thaw<Nat>(array);
         let tmp = array[i];
